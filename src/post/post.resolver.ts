@@ -1,6 +1,14 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { PostService } from './post.service';
 import { Post } from './entities/post.entity';
+import { Author } from 'src/author/entities/author.entity';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -14,5 +22,10 @@ export class PostResolver {
   @Query(() => Post, { name: 'post' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.postService.findOne(id);
+  }
+
+  @ResolveField(() => Author)
+  posts(@Parent() post: Post) {
+    return post.author;
   }
 }
