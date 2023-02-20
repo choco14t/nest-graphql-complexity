@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthorModule } from './author/author.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthorModule } from './author/author.module';
       autoSchemaFile: true,
     }),
     AuthorModule,
+    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService],
