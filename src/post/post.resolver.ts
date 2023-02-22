@@ -25,7 +25,7 @@ export class PostResolver {
   }
 
   @ResolveField(() => Author)
-  posts(@Parent() post: Post) {
+  author(@Parent() post: Post) {
     return post.author;
   }
 }
